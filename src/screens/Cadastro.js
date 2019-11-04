@@ -9,7 +9,7 @@ export default class Home extends Component {
         this.state={
             titulo:'',
             autor: '',
-            preco: "R$",
+            preco: "R$",           
         }
         this.cadastrar = this.cadastrar.bind(this)
     }
@@ -42,17 +42,17 @@ export default class Home extends Component {
             <View style={styles.container}>
                 <Text style={styles.textosTitulos}>Cadastro de Livro</Text>
                 <View style={styles.campos}>
-                    <Text style={styles.textosTitulos}>Nome</Text>
+                    <Text style={styles.textosTitulos}>Nome: </Text>
                     <TextInput style={styles.inputBox}
                         onChangeText={(titulo) => this.setState({ titulo })}
                         underlineColorAndroid='rgba(0,0,0,0)'
-                        placeholder="Título"
+                        placeholder="Nome"
                         placeholderTextColor="#002f6c"
                         selectionColor="#fff"
                         onSubmitEditing={() => this.autor.focus()} />
                 </View>
                 <View style={styles.campos}>
-                    <Text style={styles.textosTitulos}>Autor</Text>
+                    <Text style={styles.textosTitulos}>Autor: </Text>
                     <TextInput style={styles.inputBox}
                         onChangeText={(autor) => this.setState({ autor })}
                         underlineColorAndroid='rgba(0,0,0,0)'
@@ -63,7 +63,7 @@ export default class Home extends Component {
                     />
                 </View>
                 <View style={styles.campos}>
-                    <Text style={styles.textosTitulos}>Preço</Text>
+                    <Text style={styles.textosTitulos}>Preço: </Text>
                     <TextInput style={styles.inputBox}
                         onChangeText={(preco) => this.setState({ preco })}
                         underlineColorAndroid='rgba(0,0,0,0)'                    
@@ -72,6 +72,7 @@ export default class Home extends Component {
                         defaultValue="R$ "
                         keyboardType = "decimal-pad"
                         ref={(input) => this.preco = input}
+                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                     />
                 </View>
 

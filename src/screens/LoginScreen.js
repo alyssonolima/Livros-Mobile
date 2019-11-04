@@ -43,7 +43,7 @@ export default class PhoneAuthTest extends Component {
 
   signIn = () => {
     const { phoneNumber } = this.state;
-    this.setState({ message: 'Sending code ...' });
+    this.setState({ message: 'Enviando código ...' });
 
     auth().signInWithPhoneNumber(phoneNumber)
       .then(confirmResult => this.setState({ confirmResult, message: 'Code has been sent!' }))
@@ -58,7 +58,7 @@ export default class PhoneAuthTest extends Component {
         .then((user) => {
           this.setState({ message: 'Code Confirmed!' });
         })
-        .catch(error => this.setState({ message: `Code Confirm Error: ${error.message}` }));
+        .catch(error => this.setState({ message: `Código errado: ${error.message}` }));
     }
   };
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text, StyleSheet } from 'react-native';
+import { View, FlatList, Text, StyleSheet, Icons } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 
 import firestore from '@react-native-firebase/firestore';
@@ -49,6 +49,7 @@ export default class Home extends Component {
                     renderItem={this.renderItem}
                     keyExtractor={extractKey}
                 />
+                <Icons ></Icons>
             </View>
 
         );
