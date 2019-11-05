@@ -3,6 +3,11 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 
 export default class Perfil extends Component{
 
+    static navigationOptions = {
+        drawerLabel: 'Meus Dados'        
+      };
+
+
     constructor(props){
         super(props)
         this.state = {

@@ -5,10 +5,11 @@ import Home from './Home'
 import Cadastro from './Cadastro'
 import Perfil from './Perfil'
 
+
+
 const drawerNavigation = createDrawerNavigator({
-    Home,
     Perfil,
-    Cadastro
+    Home,
 });
 
 export default createAppContainer(drawerNavigation);

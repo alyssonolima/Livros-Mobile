@@ -3,6 +3,7 @@ import { View, FlatList, Text, StyleSheet, Icons } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 const extractKey = ({ id }) => id
 
@@ -11,7 +12,8 @@ export default class Home extends Component {
         super(props)
 
         this.state = {
-            livros: []
+            livros: [],  
+           // tele:  this.props.navigation.getParam('fone', '999')          
         }
 
         this.getLivros = this.getLivros.bind(this)
@@ -41,15 +43,17 @@ export default class Home extends Component {
     }
 
     render() {
-        return (
+        
+        return (           
+
             <View style={styles.container}>
+                <Text style={styles.textoTitulo}>Livros</Text>
                 <NavigationEvents onDidFocus={() => this.getLivros()} />
                 <FlatList
                     data={this.state.livros}
                     renderItem={this.renderItem}
                     keyExtractor={extractKey}
-                />
-                <Icons ></Icons>
+                />                
             </View>
 
         );
@@ -65,4 +69,9 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         backgroundColor: 'skyblue',
     },
+    textoTitulo: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: "center",
+    }
 })
