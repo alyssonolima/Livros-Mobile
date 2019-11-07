@@ -7,6 +7,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import LoginScreen from "./src/screens/LoginScreen";
 import MenuPrincipal from "./src/screens/MenuPrincipal";
+import CadastroLivroScreen from "./src/screens/CadastroLivroScreen";
+import DetalheLivroScreen from "./src/screens/DetalheLivroScreen";
 
 const stackNavigator = createStackNavigator({
     LoginScreen : {
@@ -14,10 +16,20 @@ const stackNavigator = createStackNavigator({
     },
     MenuPrincipal: {
         screen: MenuPrincipal,
+
         navigationOptions: ({navigation}) => ({
-          headerLeft: <Icon size={24} style={{marginLeft: 10}} name="menu" onPress={()=>navigation.toggleDrawer()}/>
+          headerLeft: <Icon size={24} style={{marginLeft: 10}} name="menu" onPress={()=>navigation.toggleDrawer()}/>,
+          
         }),
-      }
+      
+    },
+    CadastroLivro: {
+      screen: CadastroLivroScreen,
+    },
+    DetalheLivro:{
+      screen: DetalheLivroScreen,
+    }
+
 });
 
 export default createAppContainer(stackNavigator);

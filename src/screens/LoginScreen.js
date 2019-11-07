@@ -21,7 +21,7 @@ export default class PhoneAuthTest extends Component {
 
   componentDidMount() {
     this.unsubscribe = auth().onAuthStateChanged((user) => {
-      if (user) {
+      if (user) {        
         this.props.navigation.navigate('MenuPrincipal', {fone : user.phoneNumber})
       } else {
         // User has been signed out, reset the state
