@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default class Perfil extends Component{
+    
     constructor(props){
         super(props)
         this.state = {
-           fone: "+55 84 0000-0000", 
-           nome: '',     
+           fone: this.props.navigation.getParam('fone', "000"), 
+           nome: 'teste',     
         };
     }
 
@@ -14,8 +15,7 @@ export default class Perfil extends Component{
        alert('Perfil alterado com sucesso!')  
     }
 
-    render(){
-        
+    render(){           
         return(
             <View style={styles.container}>
                <Text style={styles.textoTitulo}>Meus Dados</Text>

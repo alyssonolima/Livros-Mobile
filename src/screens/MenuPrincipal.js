@@ -4,21 +4,18 @@ import { createAppContainer } from 'react-navigation';
 import ListaLivrosScreen from './ListaLivrosScreen'
 import Perfil from './Perfil'
 
-
-
 const drawerNavigation = createDrawerNavigator(
     {
         Perfil:{
             screen: Perfil,
-            navigationOptions:({navigation}) => ({            
-                fone: navigation.getParam('fone', ''),
+            navigationOptions:({navigation}) => ({
                 title: 'Meus Dados'
             }),
         },
         ListaLivros:{        
             screen: ListaLivrosScreen,
             navigationOptions:({navigation}) => ({
-                title: 'Livros'
+                title: 'Livros',                
             }),
         },
     },
