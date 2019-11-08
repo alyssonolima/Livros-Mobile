@@ -4,6 +4,11 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import firestore from '@react-native-firebase/firestore';
 
 export default class Home extends Component {
+    static navigationOptions = {
+        headerTruncatedBackTitle : true,
+        headerShown: false,
+    }
+
     constructor(props) {
         super(props)
         this.state={
@@ -40,7 +45,7 @@ export default class Home extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.textosTitulos}>Cadastro de Livro</Text>
+                <Text style={styles.textosTitulos}>Cadastrar</Text>
                 <View style={styles.campos}>
                     <Text style={styles.textosTitulos}>Nome: </Text>
                     <TextInput style={styles.inputBox}

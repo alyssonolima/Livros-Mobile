@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     },
     textoTitulo:{
         fontSize: 30,       
-        color: 'blue',
+        color: 'purple',
         textAlign: 'center',
         fontWeight: 'bold',
         padding: 20,

@@ -10,7 +10,7 @@ export default class DetalheLivroScreen extends Component{
     render(){        
         return(
             <View style={styles.container}>
-               <Text>Detalhe do Livro</Text>
+               <Text>Detalhe</Text>
             </View>
         );
     }

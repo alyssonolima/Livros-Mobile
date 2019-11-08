@@ -25,9 +25,19 @@ const stackNavigator = createStackNavigator({
     },
     CadastroLivro: {
       screen: CadastroLivroScreen,
+      navigationOptions: ({navigation}) => ({
+        headerLeft:false,        
+        headerTruncatedBackTitle : true,
+        headerShown: false,
+        
+      }),
     },
     DetalheLivro:{
       screen: DetalheLivroScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: "DETALHE DO LIVRO",
+        headerTintColor: 'blue',      
+      }),
     }
 
 });
