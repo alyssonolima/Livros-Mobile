@@ -28,6 +28,7 @@ export default class Home extends Component {
                 titulo: this.state.titulo,
                 autor: this.state.autor,
                 preco: this.state.preco,
+                telefone: this.props.navigation.getParam('fone'),
             })
             .then(
                 ()=>alert('Livro cadastrado com sucesso')

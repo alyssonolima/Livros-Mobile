@@ -35,11 +35,9 @@ export default class ListaLivrosScreen extends Component {
 
     renderItem = ({ item }) => {
         return (
-            <TouchableOpacity                            
-                    onPress={() => {this.props.navigation.navigate('DetalheLivro')} }>
-                    <Text style={styles.row}> {item.titulo}  </Text>
-                </TouchableOpacity>
-            
+            <TouchableOpacity  onPress={() => {this.props.navigation.navigate('DetalheLivro', {livro: item})} }>
+                <Text style={styles.row}> {item.titulo}  </Text>
+            </TouchableOpacity>            
         )
     }
     
@@ -61,7 +59,7 @@ export default class ListaLivrosScreen extends Component {
                 <TouchableOpacity
                 style = {styles.botao}
                 onFocus={()=> {this.color('blue')}}
-                    onPress={() => {this.props.navigation.navigate('CadastroLivro')} }>
+                    onPress={() => {this.props.navigation.navigate('CadastroLivro', {fone: this.props.navigation.getParam('fone'),})} }>
                     <Icons name='add-circle-outline' size={80} color='black' /> 
                 </TouchableOpacity>
                 </View>
