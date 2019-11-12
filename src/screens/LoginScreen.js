@@ -79,7 +79,7 @@ export default class PhoneAuthTest extends Component {
           placeholder={'Phone number ... '}
           value={phoneNumber}
         />
-        <Button title="Sign In" color="green" onPress={this.signIn} />
+        <Button title="Sign In" color="0026ca" onPress={this.signIn} />
       </View>
     );
   }
@@ -107,7 +107,7 @@ export default class PhoneAuthTest extends Component {
           placeholder={'Code ... '}
           value={codeInput}
         />
-        <Button title="Confirm Code" color="#841584" onPress={this.confirmCode} />
+        <Button title="Confirm Code" color="#0026ca" onPress={this.confirmCode} />
       </View>
     );
   }

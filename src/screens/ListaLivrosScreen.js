@@ -35,9 +35,22 @@ export default class ListaLivrosScreen extends Component {
 
     renderItem = ({ item }) => {
         return (
-            <TouchableOpacity  onPress={() => {this.props.navigation.navigate('DetalheLivro', {livro: item})} }>
-                <Text style={styles.row}> {item.titulo}  </Text>
-            </TouchableOpacity>            
+            <View style={styles.cardLivro}>
+                <TouchableOpacity  onPress={() => {this.props.navigation.navigate('DetalheLivro', {livro: item})} }>
+                    <View style={styles.viewCampos}>
+                        <Text style={styles.textoCampo}> Título:  </Text>
+                        <Text style={styles.textoCampoR}> {item.titulo}  </Text>
+                    </View>
+                    <View style={styles.viewCampos}>
+                        <Text style={styles.textoCampo}> Autor:  </Text>
+                        <Text style={styles.textoCampoR}> {item.autor}  </Text>
+                    </View>
+                    <View style={styles.viewCampos}>
+                        <Text style={styles.textoCampo}> Contato:  </Text>
+                        <Text style={styles.textoCampoR}> {item.telefone}  </Text>
+                    </View>
+                </TouchableOpacity>
+            </View>         
         )
     }
     
@@ -46,8 +59,8 @@ export default class ListaLivrosScreen extends Component {
         return (           
 
             <View style={styles.container}>
-                <View style={styles.viewLivros}>                
-                    <Text style={styles.textoTitulo}>Livros</Text>
+                <View style={styles.titulo}><Text style={styles.textoTitulo}>Livros</Text></View>
+                <View style={styles.viewLivros}>
                     <NavigationEvents onDidFocus={() => this.getLivros()} />
                     <FlatList
                         data={this.state.livros}
@@ -57,10 +70,10 @@ export default class ListaLivrosScreen extends Component {
                 </View>
                 <View style={styles.viewAdd}>
                 <TouchableOpacity
-                style = {styles.botao}
-                onFocus={()=> {this.color('blue')}}
+                    style = {styles.botao}
+                    onFocus={()=> {this.color('blue')}}
                     onPress={() => {this.props.navigation.navigate('CadastroLivro', {fone: this.props.navigation.getParam('fone'),})} }>
-                    <Icons name='add-circle-outline' size={80} color='black' /> 
+                    <Icons name='add-circle-outline' size={80} color='#0026ca' /> 
                 </TouchableOpacity>
                 </View>
             </View>
@@ -70,6 +83,33 @@ export default class ListaLivrosScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+    cardLivro:{
+        margin: 5,
+        padding: 10,
+        borderColor: 'black',
+        borderStyle: "solid",
+        borderWidth: 1,
+        backgroundColor: "#2962ff",
+    },
+    viewCampos: {
+        flexDirection: "row",
+        alignItems: "center",
+        alignContent: "stretch",        
+    },
+    textoCampo: {
+        textAlign: "left",
+        fontSize: 20,
+        color: '#ffffff',
+        fontWeight: 'bold',
+        flex: 1,
+    },
+    textoCampoR: {
+        textAlign: "left",
+        fontSize: 18,
+        color: '#ffffff',
+        fontWeight: 'bold',
+        flex: 3,
+    },
     botao: {
         paddingRight: 15,
         paddingBottom: 15,
@@ -85,18 +125,17 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-    },
-    row: {
-        padding: 15,
-        marginBottom: 5,
-        backgroundColor: 'skyblue',
-    },
+        backgroundColor: '#768fff',
+    },    
     textoTitulo:{
-        fontSize: 30,       
-        color: 'purple',
+        fontSize: 20,         
         textAlign: 'center',
         fontWeight: 'bold',
-        padding: 20,
+        padding: 10,
+        color: "#ffffff"
 
+    },    
+    titulo:{
+        backgroundColor: "#0026ca",
     },
 })

@@ -10,7 +10,8 @@ import MenuPrincipal from "./src/screens/MenuPrincipal";
 import CadastroLivroScreen from "./src/screens/CadastroLivroScreen";
 import DetalheLivroScreen from "./src/screens/DetalheLivroScreen";
 
-const stackNavigator = createStackNavigator({
+const stackNavigator = createStackNavigator(
+  {
     LoginScreen : {
         screen: LoginScreen
     },
@@ -18,8 +19,7 @@ const stackNavigator = createStackNavigator({
         screen: MenuPrincipal,
 
         navigationOptions: ({navigation}) => ({
-          headerLeft: <Icon size={24} style={{marginLeft: 10}} name="menu" onPress={()=>navigation.toggleDrawer()}/>,
-          
+          headerLeft: <Icon size={24} style={{marginLeft: 10}} name="menu" onPress={()=>navigation.toggleDrawer()}/>,          
         }),
       
     },
@@ -35,11 +35,14 @@ const stackNavigator = createStackNavigator({
     DetalheLivro:{
       screen: DetalheLivroScreen,
       navigationOptions: ({navigation}) => ({
-        headerTitle: "DETALHE DO LIVRO",
-        headerTintColor: 'blue',      
+        
       }),
     }
 
-});
+},
+{
+  
+},
+);
 
 export default createAppContainer(stackNavigator);

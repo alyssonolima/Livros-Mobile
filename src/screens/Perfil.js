@@ -1,48 +1,63 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
+import firestore from '@react-native-firebase/firestore';
+
 export default class Perfil extends Component{
     
     constructor(props){
         super(props)
         this.state = {
            fone: this.props.navigation.getParam('fone', "000"), 
-           nome: 'teste',     
-        };
+           nome: '',     
+        };        
     }
 
-    cadastrar() {        
-       alert('Perfil alterado com sucesso!')  
+   
+    cadastrar(tele, nome) {
+        if(tele != "000" & nome != ''){
+            firestore().collection("user").add({
+                fone: tele,
+                nome: this.nome,
+            }).then(
+                alert('Perfil alterado com sucesso!')  
+            ).catch(
+                alert('Erro em atualizar o perfil.')  
+            )
+        }else{
+            alert('Verifique se todos os dados foram preenchidos!')
+        }      
     }
 
-    render(){           
+    render(){ 
+        
         return(
             <View style={styles.container}>
-               <Text style={styles.textoTitulo}>Meus Dados</Text>
-                <View style={styles.viewCampos}>
-                    <Text style={styles.textoCampo} >Telefone:  </Text>
-                    <TextInput style={styles.inputBox}                        
-                        underlineColorAndroid='rgba(0,0,0,0)'                        
-                        placeholderTextColor="#002f6c"
-                        selectionColor="#fff" 
-                        editable = {false}
-                        value = {this.state.fone } />
-                </View>
-                <View style={styles.viewCampos}>
-                    <Text style={styles.textoCampo}>Nome:  </Text>
-                    <TextInput style={styles.inputBox}
-                        onChangeText={(nome) => this.setState({ nome: nome })}
-                        underlineColorAndroid='rgba(0,0,0,0)'                        
-                        placeholderTextColor="#002f6c"
-                        selectionColor="#fff" 
-                        value = {this.state.nome} />
+               <View style={styles.titulo}><Text style={styles.textoTitulo}>Meus Dados</Text></View>
+                <View style={styles.interno}>                     
+                    <View style={styles.viewCampos}>
+                        <Text style={styles.textoCampo} >Telefone:  </Text>
+                        <TextInput style={styles.inputBox}                        
+                            underlineColorAndroid='rgba(0,0,0,0)'                        
+                            placeholderTextColor="#002f6c"
+                            selectionColor="#fff" 
+                            editable = {false}
+                            value = {this.state.fone } />
+                    </View>
+                    <View style={styles.viewCampos}>
+                        <Text style={styles.textoCampo}>Nome:  </Text>
+                        <TextInput style={styles.inputBox}
+                            onChangeText={(nome) => this.setState({ nome: nome })}
+                            underlineColorAndroid='rgba(0,0,0,0)'                        
+                            placeholderTextColor="#002f6c"
+                            selectionColor="#fff" 
+                            value = {this.state.nome} />
+                    </View>
 
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText} onPress={this.cadastrar(this.state.fone, this.state.nome)}>Enviar</Text>
+                    </TouchableOpacity>
                 </View>
-
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText} onPress={this.cadastrar}>Enviar</Text>
-                </TouchableOpacity>
-               
             </View>
         );
     }
@@ -53,38 +68,39 @@ const styles = StyleSheet.create({
     textoCampo:{
         textAlign: "left",
         fontSize: 16,
-        color: 'blue',
+        color: '#ffffff',
         fontWeight: 'bold',
         flex: 1,
-        paddingLeft: 15,
-
     },
     inputBox: {
-        height: 40,
-        width: 250,
+        width: 200,
         backgroundColor: '#eeeeee',
-        borderRadius: 25,        
+        borderRadius: 25,
+        paddingHorizontal: 16,
         fontSize: 16,
         color: '#002f6c',
-        marginVertical: 10,
-        marginLeft: 5,
-        marginRight: 20,
-        alignItems: "flex-end",
-              
+        marginVertical: 10
     },
     textoTitulo:{
-        fontSize: 30,       
-        color: 'blue',
+        fontSize: 20,       
+        color: '#ffffff',
         textAlign: 'center',
         fontWeight: 'bold',
-        padding: 20,
-
+        padding: 10,
     },
-    container: {
+    titulo:{
+        backgroundColor: "#0026ca",
+    },    
+    container: {              
+        backgroundColor: "#768fff",
+        flex: 1,
+    },
+    interno:{
         justifyContent: 'center',
-        alignItems: 'center',
-    }, 
-    
+        alignItems: 'center',  
+        margin: 10,
+        padding: 20,
+    },    
     viewCampos: {
         flexDirection: "row",
         alignItems: "center",
@@ -93,13 +109,13 @@ const styles = StyleSheet.create({
     },
     button: {
         width: 300,
-        backgroundColor: '#4f83cc',
+        backgroundColor: '#0026ca',
         borderRadius: 25,
-        marginVertical: 10,
+        marginVertical: 30,
         paddingVertical: 12
     },
     buttonText: {
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: '500',
         color: '#ffffff',
         textAlign: 'center'
