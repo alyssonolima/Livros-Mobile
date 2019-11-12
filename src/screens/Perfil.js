@@ -8,17 +8,18 @@ export default class Perfil extends Component{
     constructor(props){
         super(props)
         this.state = {
-           fone: this.props.navigation.getParam('fone', "000"), 
-           nome: '',     
-        };        
+           fone: this.props.navigation.getParam('fone', null), 
+           nome: null,     
+        };
+        this.cadastrar = this.cadastrar.bind(this)
     }
 
    
-    cadastrar(tele, nome) {
-        if(tele != "000" & nome != ''){
-            firestore().collection("user").add({
-                fone: tele,
-                nome: this.nome,
+    cadastrar() {
+        if(this.state.fone != null & this.state.nome != null){
+            firestore().collection("user").doc(this.state.fone).set({
+                fone: this.state.fone,
+                nome: this.state.nome,
             }).then(
                 alert('Perfil alterado com sucesso!')  
             ).catch(
@@ -55,7 +56,7 @@ export default class Perfil extends Component{
                     </View>
 
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText} onPress={this.cadastrar(this.state.fone, this.state.nome)}>Enviar</Text>
+                        <Text style={styles.buttonText} onPress={this.cadastrar}>Enviar</Text>
                     </TouchableOpacity>
                 </View>
             </View>

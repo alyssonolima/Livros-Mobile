@@ -11,7 +11,7 @@ export default class DetalheLivroScreen extends Component{
         }
     }  
 
-    rmover (){
+    remover (){
         ()=>alert('Livro Removido com sucesso!')
     }
 
