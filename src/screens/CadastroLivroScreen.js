@@ -18,10 +18,7 @@ export default class CadastroLivroScreen extends Component {
         }
         this.cadastrar = this.cadastrar.bind(this)
     }
-
-    componentDidMount() {
-    }
-    
+   
     cadastrar() {
         if(this.state.titulo != '' & this.state.autor != ''){
             firestore().collection("livros").doc(this.state.titulo+this.state.autor).set({
@@ -31,7 +28,9 @@ export default class CadastroLivroScreen extends Component {
                 telefone: this.props.navigation.getParam('fone'),
             }).then(                
                 alert('Livro cadastrado com sucesso')                 
-            )            
+            ).finally(
+                () => {this.props.navigation.navigate('MenuPrincipal')}
+            )
 
         } else{
             alert('Verifique se todos os dados foram preenchidos!')

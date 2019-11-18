@@ -36,7 +36,7 @@ export default class ListaLivrosScreen extends Component {
     renderItem = ({ item }) => {
         return (
             <View style={styles.cardLivro}>
-                <TouchableOpacity  onPress={() => {this.props.navigation.navigate('DetalheLivro', {livro: item})} }>
+                <TouchableOpacity  onPress={() => {this.props.navigation.navigate('DetalheLivro', {livro: item, fone: this.props.navigation.getParam('fone')})} }>
                     <View style={styles.viewCampos}>
                         <Text style={styles.textoCampo}> Título:  </Text>
                         <Text style={styles.textoCampoR}> {item.titulo}  </Text>

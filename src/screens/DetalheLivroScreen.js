@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text , TouchableOpacity} from 'react-native';
+import { View, StyleSheet, Text , TouchableOpacity, Alert} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
+
 
 export default class DetalheLivroScreen extends Component{
     constructor(props){
@@ -8,11 +9,42 @@ export default class DetalheLivroScreen extends Component{
         
         this.state = {
             livro: this.props.navigation.getParam('livro'),
+            fone: this.props.navigation.getParam('fone'),
         }
     }  
 
-    remover (){
-        ()=>alert('Livro Removido com sucesso!')
+    remover(){
+        firestore().collection("livros").doc(this.state.livro.titulo+this.state.livro.autor).delete().then(
+            alert("Livro removido com sucesso!"),
+            
+        ).finally(
+            () => {this.props.navigation.navigate('MenuPrincipal')}
+        )
+    }
+
+    confirmar(){
+        Alert.alert(
+            'Atenção',
+            'Deseja Realmente remover o livro?',
+            [              
+              {text: 'Cancel', style: 'cancel', },
+              {text: 'OK', onPress: () => this.remover()},
+            ],
+            {cancelable: false},
+          );
+    }
+
+    exibirRemover(){       
+        
+        if(this.state.livro.telefone != this.state.fone) return null;
+
+        return(
+            <View>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText} onPress={this.confirmar.bind(this)}>Remover</Text>
+                </TouchableOpacity>
+            </View>
+        );        
     }
 
     render(){        
@@ -36,9 +68,8 @@ export default class DetalheLivroScreen extends Component{
                         <Text style={styles.textoCampoR} > {this.state.livro.telefone} </Text>
                     </View>
 
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText} onPress={this.remover}>Remover</Text>
-                    </TouchableOpacity>
+                   {this.exibirRemover()}
+
                 </View>
             </View>
         );

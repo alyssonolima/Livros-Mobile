@@ -9,22 +9,23 @@ export default class Perfil extends Component{
         super(props)
         this.state = {
            fone: this.props.navigation.getParam('fone', null), 
-           nome: null,     
+           nome: null,
+           user: [],    
         };
         this.cadastrar = this.cadastrar.bind(this)
     }
 
-   
+    componentDidMount(){
+        let user = firestore().collection("user").doc(this.state.fone).get()
+        alert(user.querySnapshot)
+    }   
+
     cadastrar() {
         if(this.state.fone != null & this.state.nome != null){
             firestore().collection("user").doc(this.state.fone).set({
                 fone: this.state.fone,
                 nome: this.state.nome,
-            }).then(
-                alert('Perfil alterado com sucesso!')  
-            ).catch(
-                alert('Erro em atualizar o perfil.')  
-            )
+            }).then(alert('Perfil alterado com sucesso!'))
         }else{
             alert('Verifique se todos os dados foram preenchidos!')
         }      
