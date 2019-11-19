@@ -5,6 +5,8 @@ import ListaLivrosScreen from './ListaLivrosScreen';
 import Perfil from './Perfil';
 import LoginScreen from './LoginScreen';
 
+
+
 const drawerNavigation = createDrawerNavigator(
     {
         Perfil:{
@@ -22,7 +24,7 @@ const drawerNavigation = createDrawerNavigator(
         Sair: {
             screen: LoginScreen,
             navigationOptions:({navigation}) => ({
-                title: 'Sair',                
+                title: 'Sair',                            
             }),
         }
     },

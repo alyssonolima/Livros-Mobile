@@ -16,8 +16,7 @@ export default class Perfil extends Component{
     }
 
     componentDidMount(){
-        let user = firestore().collection("user").doc(this.state.fone).get()
-        alert(user.querySnapshot)
+       // firestore().collection("user").whereEqualTo("fone",this.state.fone).get()       
     }   
 
     cadastrar() {
@@ -47,15 +46,15 @@ export default class Perfil extends Component{
                             value = {this.state.fone } />
                     </View>
                     <View style={styles.viewCampos}>
-                        <Text style={styles.textoCampo}>Nome:  </Text>
+                        <Text style={styles.textoCampo}>Nome: </Text>
                         <TextInput style={styles.inputBox}
                             onChangeText={(nome) => this.setState({ nome: nome })}
                             underlineColorAndroid='rgba(0,0,0,0)'                        
                             placeholderTextColor="#002f6c"
                             selectionColor="#fff" 
-                            value = {this.state.nome} />
+                            value = {this.state.nome} />                       
                     </View>
-
+                    
                     <TouchableOpacity style={styles.button}>
                         <Text style={styles.buttonText} onPress={this.cadastrar}>Enviar</Text>
                     </TouchableOpacity>

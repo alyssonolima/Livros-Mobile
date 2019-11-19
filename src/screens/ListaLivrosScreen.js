@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, FlatList, Text, StyleSheet, TouchableOpacity, Button, } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import Icons from 'react-native-vector-icons/MaterialIcons';
+import FloatingActionButton from 'react-native-vector-icons/MaterialIcons';
 
 import firestore from '@react-native-firebase/firestore';
 
@@ -68,14 +69,13 @@ export default class ListaLivrosScreen extends Component {
                         keyExtractor={extractKey}
                     />
                 </View>
-                <View style={styles.viewAdd}>
+                
                 <TouchableOpacity
-                    style = {styles.botao}
+                    style = {styles.botaoPlus}
                     onFocus={()=> {this.color('blue')}}
                     onPress={() => {this.props.navigation.navigate('CadastroLivro', {fone: this.props.navigation.getParam('fone'),})} }>
-                    <Icons name='add-circle-outline' size={80} color='#0026ca' /> 
+                    <Icons name='add-circle-outline' size={80} color='#0026ca' />
                 </TouchableOpacity>
-                </View>
             </View>
 
         );
@@ -83,6 +83,15 @@ export default class ListaLivrosScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+    botaoPlus:{         
+        alignItems:'center', 
+        justifyContent:'center',        
+        position: 'absolute', 
+        bottom: 10, 
+        right: 10, 
+               
+        borderRadius:100, 
+    },
     cardLivro:{
         margin: 5,
         padding: 10,
@@ -109,11 +118,7 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontWeight: 'bold',
         flex: 3,
-    },
-    botao: {
-        paddingRight: 15,
-        paddingBottom: 15,
-    },
+    },   
     viewLivros: {
         flex : 4,
     },
